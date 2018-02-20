@@ -26,3 +26,5 @@ dependencies {
     }
     testImplementation "junit:junit:$junitVersion"
 }
+
+apply from: "$rootDir/upload/upload.gradle"
