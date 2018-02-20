@@ -1,0 +1,86 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: "com.jfrog.bintray"
+
+version = releaseVersion
+def siteUrl = 'https://github.com/NikolayManzhos/RxTube'      // Homepage URL of the library
+def gitUrl = 'https://github.com/NikolayManzhos/RxTube.git'   // Git repository URL
+group = "com.nikolaymanzhos"                      // Maven Group ID for the artifact
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging POM_PACKAGING
+
+                name POM_NAME
+                description = POM_DESCRIPTION
+                url siteUrl
+
+                // Set your license
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'nikolaymanzhos'
+                        name 'Nikolay Manzhos'
+                        email System.getProperty("bintray_email")
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+if (project.getPlugins().hasPlugin('com.android.library')) {
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.source
+    }
+
+    task javadoc(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    }
+} else {
+    task sourcesJar(type: Jar, dependsOn:classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+}
+
+
+task javadocJar(type: Jar, dependsOn:javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+// https://github.com/bintray/gradle-bintray-plugin
+bintray {
+    user = System.getProperty("bintray_user")
+    key = System.getProperty("bintray_key")
+
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = POM_ARTIFACT_ID
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}
