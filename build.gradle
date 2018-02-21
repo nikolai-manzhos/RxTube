@@ -37,4 +37,5 @@ ext {
     jsEval = "v4.0.0"
 
     junitVersion = "4.12"
+    robolectricVersion = "3.7.1"
 }

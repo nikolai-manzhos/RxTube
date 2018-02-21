@@ -17,6 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -25,7 +30,11 @@ dependencies {
         exclude module: 'appcompat-v7'
     }
 
-    testImplementation "junit:junit:$junitVersion"
+    testImplementation (
+            "junit:junit:$junitVersion",
+            "org.robolectric:robolectric:$robolectricVersion",
+            "org.robolectric:shadows-httpclient:$robolectricVersion"
+    )
 }
 
 apply from: "$rootDir/upload/upload.gradle"

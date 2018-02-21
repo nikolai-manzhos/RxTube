@@ -5,6 +5,8 @@ import android.util.SparseArray;
 
 class Constants {
 
+    private Constants() {}
+
     static final SparseArray<Format> FORMAT_MAP = new SparseArray<>();
 
     static {
