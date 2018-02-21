@@ -94,7 +94,7 @@ class RxTubeImpl implements RxTube {
     private static final Pattern patSignatureDecFunction = Pattern.compile("\"signature\",(.{1,3}?)\\(.{1,10}?\\)");
 
     RxTubeImpl(Context context) {
-        this.context = context;
+        this.context = Utils.checkNotNull(context);
     }
 
     @Override
@@ -564,7 +564,6 @@ class RxTubeImpl implements RxTube {
     }
 
     private void readDecipherFunctFromCache() {
-        Utils.checkNotNull(context);
         File cacheFile = new File(context.getCacheDir().getAbsolutePath() + "/" + CACHE_FILE_NAME);
         // The cached functions are valid for 2 weeks
         if (cacheFile.exists() && (System.currentTimeMillis() - cacheFile.lastModified()) < 1209600000) {
@@ -614,7 +613,6 @@ class RxTubeImpl implements RxTube {
     }
 
     private void writeDeciperFunctToChache() {
-        Utils.checkNotNull(context);
         File cacheFile = new File(context.getCacheDir().getAbsolutePath() + "/" + CACHE_FILE_NAME);
         BufferedWriter writer = null;
         try {
@@ -636,7 +634,6 @@ class RxTubeImpl implements RxTube {
     }
 
     private void decipherViaWebView(final SparseArray<String> encSignatures) {
-        Utils.checkNotNull(context);
         final StringBuilder stb = new StringBuilder(decipherFunctions + " function decipher(");
         stb.append("){return ");
         for (int i = 0; i < encSignatures.size(); i++) {
