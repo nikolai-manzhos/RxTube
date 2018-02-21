@@ -29,11 +29,9 @@ public class RxJava2Activity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .subscribe(videoResponse -> {
                     SparseArray<YtFile> ytFiles = videoResponse.getYtFiles();
-                    if (ytFiles != null) {
-                        int itag = 22;
-                        String downloadUrl = ytFiles.get(itag).getUrl();
-                        Log.d(TAG, "onExtractionComplete: " + downloadUrl);
-                    }
+                    int itag = 22;
+                    String downloadUrl = ytFiles.get(itag).getUrl();
+                    Log.d(TAG, "onExtractionComplete: " + downloadUrl);
                 }, err -> Log.e(TAG, "", err));
     }
 }
