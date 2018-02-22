@@ -588,20 +588,6 @@ class RxTubeImpl implements RxTube {
     }
 
     /**
-     * Parse the dash manifest for different dash streams and high quality audio. Default: false
-     */
-    public void setParseDashManifest(boolean parseDashManifest) {
-        this.parseDashManifest = parseDashManifest;
-    }
-
-    /**
-     * Include the webm format files into the result. Default: true
-     */
-    public void setIncludeWebM(boolean includeWebM) {
-        this.includeWebM = includeWebM;
-    }
-
-    /**
      * Set default protocol of the returned urls to HTTP instead of HTTPS.
      * HTTP may be blocked in some regions so HTTPS is the default value.
      * <p/>
