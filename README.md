@@ -1,7 +1,7 @@
 # RxTube
 ![CircleCI](https://circleci.com/gh/NikolayManzhos/RxTube/tree/master.svg?style=shield)
 
-Reactive yotube parser. Supports RxJava and RxJava 2.
+Reactive youtube parser. Supports RxJava and RxJava 2.
 # Usage
 ```java
 String youtubeLink = "http://youtube.com/watch?v=0IKHxjkgop4";
