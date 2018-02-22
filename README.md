@@ -1,5 +1,6 @@
 # RxTube
 ![CircleCI](https://circleci.com/gh/NikolayManzhos/RxTube/tree/master.svg?style=shield)
+
 Reactive yotube parser. Supports RxJava and RxJava 2.
 # Usage
 ```java
@@ -17,7 +18,7 @@ rxTube.extract(youtubeLink)
         }, err -> Log.e(TAG, "", err));
 ```
 # Gradle
-RxJava dependecy
+RxJava dependency
 ```gradle
 implementation 'com.nikolaymanzhos:rxtube:1.0.0'
 ```
